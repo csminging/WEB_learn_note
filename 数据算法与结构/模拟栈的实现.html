@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    function Stack() {
+        this.dataStore = [];
+        this.top = 0;
+
+    }
+
+    Stack.prototype.push = function(element) {
+        this.dataStore[this.top++] = element;
+    };
+    Stack.prototype.pop = function() {
+        return this.dataStore[--this.top];
+    };
+    Stack.prototype.peek = function () {
+        return this.dataStore[this.top-1]; //如果栈为空，那么this.dataStore[-1] =undefined。并不报错
+    };
+    Stack.prototype.length = function() {
+        return this.top;
+    };
+    Stack.prototype.clear = function () {
+        this.top =0;
+    };
+
+    var s = new Stack();
+    s.push(11);
+    s.push(23);
+    console.log(s.peek());
+
+</script>
+</body>
+</html>

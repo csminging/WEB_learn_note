@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    function swap(arr,i) {  //注意，这里交换必须传入数组引用，如果传入某个数，不能改变数组原数据
+        var temp = arr[i];
+        arr[i] = arr[i+1];
+        arr[i+1] = temp;
+    }
+    function bubbleSort(arr) {
+        //外层循环arr.length-1次.
+        for(var i =arr.length-1;i>0;i--) {
+            //内层循环为当前内层循环-1次
+            for(var j = 0;j<=i-1;j++) {
+                if(arr[j]>arr[j+1]) {
+                    swap(arr,j);
+                }
+            }
+        }
+    }
+
+    var arr = [3, 53, 2, 23, 88, 24, 1, 45,0,99,-1];
+    bubbleSort(arr);
+    console.log(arr);
+</script>
+</body>
+</html>

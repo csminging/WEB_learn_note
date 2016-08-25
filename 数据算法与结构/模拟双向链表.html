@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    function Node(element){
+        this.element = element;
+        this.next = null;
+        this.previous = null;
+    }
+    function LList() {
+        this.head = new Node("head");
+
+    }
+
+    LList.prototype.find=function(item) {
+        var currNode = this.head;
+        while(currNode.element !=item) {
+            currNode = currNode.next;
+
+        }
+        return currNode;
+    }
+
+    LList.prototype.insert=function(newElement,item){
+        var newNode = new Node(newElement);
+        var current = this.find(item);
+        newNode.next = current.next;
+        newNode.previous = current;
+        current.next = newNode;
+    }
+
+    LList.prototype.display=function() {
+        var currNode = this.head;
+        while(!(currNode.next==null)) {
+            console.log(currNode.next.element);
+            currNode=currNode.next;
+        }
+    }
+
+    LList.prototype.findPrevious=function(item) {
+        var currNode = this.head;
+        while(!(currNode.next==null)&&(currNode.next.element!=item)) {
+            currNode = currNode.next;
+
+        }
+        return currNode;
+    }
+
+    LList.prototype.remove=function(item){
+        var currNode = this.find(item);
+//        console.log(currNode.next.element+"-----")
+        if(!(currNode.next ==null)){
+            currNode.previous.next = currNode.next;
+            currNode.next.previous = currNode.previous;
+            currNode.next = null;
+            currNode.previous = null;
+        }else{
+            currNode.previous.next = null;
+        }
+    }
+    LList.prototype.findLast=function(){
+        var currNode = this.head;
+        while(!(currNode.next==null)){
+            currNode = currNode.next;
+        }
+        return currNode;
+    }
+    LList.prototype.dispReverse=function(){
+        var currNode = this.head;
+        currNode = this.findLast();
+        while(!(currNode.previous ==null)){
+            console.log(currNode.element);
+            currNode = currNode.previous;
+        }
+    }
+    //测试
+    var cities = new LList();
+    cities.insert("Conway", "head");
+    cities.insert("Russellville", "Conway");
+    cities.insert("Carlisle", "Russellville");
+    cities.insert("Alma", "Carlisle");
+    cities.display();
+    console.log("---------")
+    cities.remove("Alma");
+    cities.dispReverse();
+
+
+</script>
+
+</body>
+</html>

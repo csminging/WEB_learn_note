@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    function swap(arr,i,j) {  //注意，这里交换必须传入数组引用，如果传入某个数，不能改变数组原数据
+        var temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+
+    function select(arr) {
+        //外层循环从0开始，将0下标的数字和后面的都比个遍，再将1位置的和后面的比个遍
+        for(var i =0;i<arr.length-1;i++) {
+            for(var j = i+1;j<arr.length;j++) {
+                if(arr[i]>arr[j]) {
+                    swap(arr, i, j);
+                }
+            }
+        }
+    }
+    var arr = [3, 53, 2, 23, 88, 24, 1, 45,0,99,-1];
+    select(arr);
+    console.log(arr);
+</script>
+</body>
+</html>

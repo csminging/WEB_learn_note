@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //定义存储队列元素的对象，
+    function Person(name,code) {
+        this.name = name;
+        this.code = code;//code用来存储优先级数字，数字越小优先级越高
+    }
+    //修改队列中的dequeue()方法
+    function dequeue() {
+        var priority = this.dataStore[0].code;
+        for(var i=1;i<this.dataStore.length;i++) {
+            if(this.dataStore[i].code<priority) {
+                priority =i;
+
+            }
+        }
+        return this.dataStore.splice(priority, 1);
+
+    }
+</script>
+</body>
+</html>
