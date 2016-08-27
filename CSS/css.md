@@ -382,10 +382,225 @@ border-image:url(sky.png) 10 20 30 40  fill /10px 20px 30px 40px/10px 20px 30px 
     * `padding-box`： 从padding区域（含padding）开始显示背景图像。
     * border-box： 从border区域（含border）开始显示背景图像。
     * content-box： 从content区域开始显示背景图像。
+    * IE6-8: 不支持此属性
 * <' background-clip '>： 指定对象的背景图像向外裁剪的区域。
     * padding-box： 从padding区域（不含padding）开始向外裁剪背景。
     * border-box： 从border区域（不含border）开始向外裁剪背景。
     * content-box： 从content区域开始向外裁剪背景。
     * text： 从前景内容的形状（比如文字）作为裁剪区域向外裁剪，如此即可实现使用背景作为填充色之类的遮罩效果。遮罩效果
+    * IE6-11：不支持text属性
 * <' background-color '>： 指定对象的背景颜色。
     * `transparent`
+```
+//缩写方式
+background:url(test1.jpg) no-repeat scroll 10px 20px/50px 60px content-box padding-box,
+	   url(test1.jpg) no-repeat scroll 10px 20px/70px 90px content-box padding-box,
+	   url(test1.jpg) no-repeat scroll 10px 20px/110px 130px content-box padding-box #aaa;
+	  // 注意， <' background-color '> 只能设置一次，且由于写在前面的背景会叠在之后的背景之上，所以背景色通常都定义在最后一组上，避免背景色将图像盖住。
+
+
+```
+```
+//拆分方式
+background-image:url(test1.jpg),url(test2.jpg),url(test3.jpg);
+background-repeat:no-repeat,no-repeat,no-repeat;
+background-attachment:scroll,scroll,scroll;
+background-position:10px 20px,10px 20px,10px 20px;
+background-size:50px 60px,70px 90px,110px 130px;
+background-origin:content-box,content-box,content-box;
+background-clip:padding-box,padding-box,padding-box;
+background-color:#aaa
+```
+
+```
+//多背景下，多个图片，而其他属性只有一个参数值（缩写方式）
+background-image:url(test1.jpg),url(test2.jpg),url(test3.jpg);
+background-repeat:no-repeat;
+background-attachment:scroll;
+background-position:10px 20px;
+background-size:50px 60px,70px 90px,110px 130px;
+background-origin:content-box;
+background-clip:padding-box;
+background-color:#aaa;
+```
+```
+//如果定义了多个背景图片，而 <' background-origin '> 和 <' background-clip '> 设置了相同的值。可这样缩写：
+background:url(test1.jpg) no-repeat scroll 10px 20px/50px 60px padding-box,
+	   url(test1.jpg) no-repeat scroll 10px 20px/70px 90px padding-box,
+	   url(test1.jpg) no-repeat scroll 10px 20px/110px 130px padding-box #aaa;
+```
+# 颜色 Color
+### color：设置对象的文本颜色 ，无默认值
+```
+color: red;
+```
+### opacity: `1` || &lt;number&gt;
+* 取值范围 0~1
+* IE8及其以下：filter: alpha(opacity=50) 取值0~100
+* 尽量少用此属性，会将文本及其他元素也透明化，如要避免此则用rgba进行操作
+```
+div{filter:alpha(opacity=50);} /* for IE8 and earlier */
+div{opacity:.5;} /* for IE9 and other browsers */
+```
+
+# 字体 Font
+### font：style || variant || weight ||font-size/line-height  font-family | caption | icon | menu | message-box | small-caption | status-bar
+* 参数顺序必须有序，而且合写情况下，font-size和font-family是必须的。
+> 参数说明
+* <' font-style '>： 指定文本字体样式
+    * `normal`： 指定文本字体样式为正常的字体
+    * italic： 指定文本字体样式为斜体。对于没有设计斜体的特殊字体，如果要使用斜体外观将应用oblique
+    * oblique： 指定文本字体样式为倾斜的字体。人为的使文字倾斜，而不是去选取字体中的斜体字
+* <' font-variant '>： 指定文本是否为小型的大写字母
+    * `normal` 正常的字体
+    * small-caps：小型的大写字母字体
+* <' font-weight '>： 指定文本字体的粗细
+    * `normal`： 正常的字体。相当于数字值400
+    * bold： 粗体。相当于数字值700。
+    * bolder： 定义比继承值更重的值
+    * lighter： 定义比继承值更轻的值
+    * &lt;integer&gt;： 用数字表示文本字体粗细。取值范围：100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900
+* <' font-size '>： 指定文本字体尺寸
+    * xx-small | x-small | small | `medium` | large | x-large | xx-large
+    * smaller | larger
+    * &lt;length&gt; 长度单位
+    * &lt;percentage&gt; 百分比，相对于父元素的字体尺寸
+
+
+* <' line-height '>： 指定文本字体的行高
+    * normal： 允许内容顶开或溢出指定的容器边界。
+    * &lt;length&gt;： 用长度值指定行高。不允许负值。
+    * &lt;percentage&gt;： 用百分比指定行高，其百分比取值是基于字体的高度尺寸。不允许负值。
+    * &lt;number&gt;： 用乘积因子指定行高。不允许负值。
+* <' font-family '>： 指定文本使用某个字体或字体序列
+    * 字体名称。按优先顺序排列。以逗号隔开。如果字体名称包含空格或中文，则应使用引号括起
+
+
+* caption： 使用有标题的系统控件的文本字体（如按钮，菜单等）（CSS2）
+* icon： 使用图标标签的字体（CSS2）
+* menu： 使用菜单的字体（CSS2）
+* message-box： 使用信息对话框的文本字体（CSS2）
+* small-caption： 使用小控件的字体（CSS2）
+* status-bar： 使用窗口状态栏的字体（CSS2）
+
+```
+p{font:italic small-caps bold 18px Simsun,arial,sans-serif;}
+
+```
+```
+.icon p{font:icon;}
+```
+
+# 文本 Text
+### text-transform: `none`` | capitalize | uppercase | lowercase
+> 检索或设置对象中的文本的大小写。
+* none： 无转换
+* capitalize： 将每个单词的第一个字母转换成大写
+* uppercase： 将每个单词转换成大写
+* lowercase： 将每个单词转换成小写
+```
+span{text-transform:lowercase;}
+
+```
+
+### white-space：`normal` | pre | nowrap | pre-wrap | pre-line
+> 设置或检索对象内空格的处理方式。
+* normal： 默认处理方式。
+* pre： 用等宽字体显示预先格式化的文本，不合并文字间的空白距离，当文字超出边界时不换行。可查阅pre对象
+* nowrap： 强制在同一行内显示所有文本，合并文本间的多余空白，直到文本结束或者遭遇br对象。
+* pre-wrap： 用等宽字体显示预先格式化的文本，不合并文字间的空白距离，当文字碰到边界时发生换行。
+* pre-line： 保持文本的换行，不保留文字间的空白距离，当文字碰到边界时发生换行。
+* IE6-7:不支持pre-wrap 和pre-line
+
+```
+p{word-wrap:normal;}
+
+```
+
+### word-break：`normal` | keep-all | break-all
+> 设置或检索对象内文本的字内换行行为
+* normal： 依照亚洲语言和非亚洲语言的文本规则，允许在字内换行。
+* keep-all： 与所有非亚洲语言的normal相同。对于中文，韩文，日文，不允许字断开。适合包含少量亚洲文本的非亚洲文本。
+* break-all： 该行为与亚洲语言的normal相同。也允许非亚洲语言文本行的任意字内断开。该值适合包含一些非亚洲文本的亚洲文本，比如使连续的英文字母间断行。
+* keep-all 有严重兼容性，不要使用
+
+### word-wrap：`normal` | break-word
+> 设置或检索当内容超过指定容器的边界时是否断行
+* normal： 允许内容顶开或溢出指定的容器边界。
+* break-word： 内容将在边界内换行。如果需要，单词内部允许断行。
+
+### text-align：`start` | end | left | right | center | justify | match-parent | justify-all
+> 设置或检索对象中内容的水平对齐方式。
+* left： 内容左对齐。
+* center： 内容居中对齐。
+* right： 内容右对齐。
+
+### word-spacing：normal | &lt;length&gt;
+* `normal` :  默认间隔
+* &lt;length&gt;:用长度值指定间隔。可以为负值。
+> 检索或设置对象中的单词之间的最小，最大和最佳间隙。
+
+### letter-spacing：normal | &lt;length&gt;
+* `normal` :  默认间隔
+* &lt;length&gt;:用长度值指定间隔。可以为负值。
+> 检索或设置对象中的字符之间的最小，最大和最佳间隙。
+
+### text-indent :`0` &lt;legnth&gt; | &lt;percentage&gt;
+> 检索或设置对象中的文本的缩进。可以为负值
+```
+div{text-indent:2em}
+
+```
+
+### vertical-align：`baseline` | sub | super | top | text-top | middle | bottom | text-bottom | &lt;percentage&gt; | &lt;length&gt;
+> 设置或检索`内联元素`在行框内的垂直对其方式。
+
+* baseline： 将支持valign特性的对象的内容与基线对齐
+* sub： 垂直对齐文本的下标
+* super： 垂直对齐文本的上标
+* top： 将支持valign特性的对象的内容与对象顶端对齐
+* text-top： 将支持valign特性的对象的文本与对象顶端对齐
+* middle： 将支持valign特性的对象的内容与对象中部对齐
+* bottom： 将支持valign特性的对象的文本与对象底端对齐
+* text-bottom： 将支持valign特性的对象的文本与对象顶端对齐
+* &lt;percentage&gt;： 用百分比指定由基线算起的偏移量。可以为负值。基线对于百分数来说就是0%。
+* &lt;length&gt;： 用长度值指定由基线算起的偏移量。可以为负值。基线对于数值来说为0。（CSS2）
+
+### line-height：normal | &lt;length&gt; | &lt;percentage&gt; | &lt;number&gt;
+> 检索或设置对象的行高。即字体最底端与字体内部顶端之间的距离。
+* normal: 允许内容顶开或溢出指定的容器边界
+* &lt;length&gt;: 用长度值指定行高。不允许负值。
+* &lt;percentage&gt; :  用百分比指定行高，其百分比取值是基于字体的高度尺寸。不允许负值。
+* &lt;number&gt; : 用乘积因子指定行高。不允许负值。
+
+### text-decoration : none | underline | overline | line-through | blink
+> 复合属性。检索或设置对象中的文本的装饰。 可设置多个属性值
+
+### text-shadow：`none` | &lt;shadow&gt;
+> 设置或检索对象中文本的文字是否有阴影及模糊效果。可设置多组效果，用逗号隔开
+> IE 6-9 不支持
+* none： 无阴影
+* &lt;length&gt;①： 第1个长度值用来设置对象的阴影水平偏移值。可以为负值
+* &lt;length&gt;②： 第2个长度值用来设置对象的阴影垂直偏移值。可以为负值
+* &lt;length&gt;③： 如果提供了第3个长度值则用来设置对象的阴影模糊值。不允许负值
+* &lt;color&gt; :设置对象的阴影的颜色。
+
+```
+p{text-shadow:1px 1px rgba(0,0,0,.3);}
+```
+# 书写模式 Writting Modes
+### direction：ltr | rtl
+> 检索或设置文本流的方向。
+* ltr： 文本流从左到右。
+* rtl： 文本流从右到左。
+
+# 
+
+
+
+
+
+
+
+
+
