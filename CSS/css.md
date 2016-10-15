@@ -80,7 +80,7 @@ clip:rect(auto,100px,100px,20px);
 
 ***
 # 布局 Layout
-### display：`inline`  | block | inline-block
+### display：`inline`  | block | inline-block | flex | inline-flex
 > 设置对象是否及如何显示
 * IE6 7支持inline元素转换成inline-block，但不支持block元素转换成inline-block。所以非inline元素在IE6 7下转换成inline
   ，然后hasLayout，以此获得和inline-block类似的效果
@@ -594,13 +594,79 @@ p{text-shadow:1px 1px rgba(0,0,0,.3);}
 * ltr： 文本流从左到右。
 * rtl： 文本流从右到左。
 
-# 
+# 列表  List
+
+### list-style: type || position ||  image
+> 设置列表项目相关内容
 
 
+> list-style-type：`disc` | circle | square | decimal |lower-alpha | upper-alpha | none
+
+* `disc` : 实心圆
+* circle ： 空心圆
+* square ：实心方块
+* decimal ： 阿拉伯数字
+* lower-alpha ： 小写英文字母
+* upper-alpha : 大写英文字母
+* none ：不使用项目符号
+
+> list-style-position：`outside` | inside
+
+* outside： 列表项目标记放置在文本以外，且环绕文本不根据标记对齐
+* inside： 列表项目标记放置在文本以内，且环绕文本根据标记对齐
+
+> list-style-image：`none` | &lt;url&gt;
+* none: 不指定图像
+* url : 使用绝对或相对地址指定列表项标记图像。如果图像地址无效，默认内容标记将被 <' list-style-type '> 代替。
 
 
+# 表格 Table
+### table-layout: `auto` | fixed
+* auto： 默认的自动算法。布局将基于各单元格的内容，换言之，可能你给某个单元格定义宽度为100px，但结果可能并不是100px。表格在每一单元格读取计算之后才会显示出来，速度很慢
+* fixed： 固定布局的算法。在这算法中，水平布局是仅仅基于表格的宽度，表格边框的宽度，单元格间距，列的宽度，而和表格内容无关。也就是说，内容可能被裁切
+
+### border-collapse: `separate` | collapse
+* separate： 边框独立
+* collapse： 相邻边被合并
+
+### border-spacing: `0` || &lt;length&gt;{1,2}
+* 当border-collapse：separate的时候，设置属性起作用
+* 设置或检索当表格边框独立时，行和单元格的边框在横向和纵向上的间距
 
 
+### caption-side:`top` | bottom
+* top： 指定caption在表格上边
+* bottom： 指定caption在表格下边
+* 要在IE7及以下浏览器中实现top与bottom参数值的效果，可直接在caption标签内定义标签属性valign为top和bottom。
+* Firefox还额外支持right和left两个非标准值
+
+### empty-cells: hide | `show`
+> 设置或检索当表格的单元格无内容时，是否显示该单元格的边框。
+* hide： 指定当表格的单元格无内容时，隐藏该单元格的边框。
+* show： 指定当表格的单元格无内容时，显示该单元格的边框。
+* IE7及以下浏览器中默认隐藏无内容的单元格边框，要想使其获得与show参数值相同的效果，可以变相给该空单元格加个占位且不可见的元素，例如全角空格或&nbsp;等等。
+* 只有当表格边框独立（即 <' border-collapse '> 属性等于separate时）此属性才起作用。
 
 
+# 用户界面 User Interface
 
+### text-overflow: `clip` | ellipsis
+* clip： 当内联内容溢出块容器时，将溢出部分裁切掉。
+* ellipsis： 当内联内容溢出块容器时，将溢出部分替换为（...）。
+
+### outline:width || style || color
+* outlines相关属性不占据布局空间，不会影响元素的尺寸；
+
+### outline-width: ：&lt;length&gt; | thin | `medium` | thick
+
+### outline-style: `none` | dotted | dashed | solid | double | groove | ridge | inset | outset
+
+### outline-color:：&lt;color&gt; | `invert`
+*  使用背景色的反色。该参数值目前仅在IE及Opera下有效
+### cursor
+> 设置或检索在对象上移动的鼠标指针采用何种系统预定义的光标形状。
+### zoom: `normal` || &lt;number&gt; ||  &lt;percentage&gt;
+### box-sizing: content-box | border-box
+* IE6-7 不支持此属性
+* content-box： padding和border不被包含在定义的width和height之内。
+* border-box： padding和border被包含在定义的width和height之内。

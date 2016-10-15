@@ -1,0 +1,358 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+<title>angular.md</title><link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext' rel='stylesheet' type='text/css'><style type='text/css'>html, body {overflow-x: initial !important;}.CodeMirror { height: auto; }
+.CodeMirror-scroll { overflow-y: hidden; overflow-x: auto; }
+.CodeMirror-lines { padding: 4px 0px; }
+.CodeMirror pre { }
+.CodeMirror-scrollbar-filler, .CodeMirror-gutter-filler { background-color: white; }
+.CodeMirror-gutters { border-right-width: 1px; border-right-style: solid; border-right-color: rgb(221, 221, 221); white-space: nowrap; background-color: rgb(247, 247, 247); }
+.CodeMirror-linenumbers { }
+.CodeMirror-linenumber { padding: 0px 3px 0px 5px; text-align: right; color: rgb(153, 153, 153); }
+.CodeMirror div.CodeMirror-cursor { border-left-width: 1px; border-left-style: solid; border-left-color: black; z-index: 3; }
+.CodeMirror div.CodeMirror-secondarycursor { border-left-width: 1px; border-left-style: solid; border-left-color: silver; }
+.CodeMirror.cm-keymap-fat-cursor div.CodeMirror-cursor { width: auto; border: 0px; z-index: 1; background: rgb(119, 238, 119); }
+.CodeMirror div.CodeMirror-cursor.CodeMirror-overwrite { }
+.cm-tab { display: inline-block; }
+.cm-s-typora-default .cm-header, .cm-s-typora-default .cm-property { color: rgb(217, 79, 138); }
+.cm-s-typora-default pre.cm-header1:not(.cm-atom) :not(.cm-overlay) { font-size: 2rem; line-height: 2rem; }
+.cm-s-typora-default pre.cm-header2:not(.cm-atom) :not(.cm-overlay) { font-size: 1.4rem; line-height: 1.4rem; }
+.cm-s-typora-default .cm-atom, .cm-s-typora-default .cm-number { color: rgb(149, 132, 134); }
+.cm-s-typora-default .cm-table-row, .cm-s-typora-default .cm-block-start { font-family: monospace; }
+.cm-s-typora-default .cm-comment { color: rgb(74, 90, 159); font-family: monospace; }
+.cm-s-typora-default .cm-tag { color: rgb(169, 68, 66); }
+.cm-s-typora-default .cm-string { color: rgb(126, 134, 169); }
+.cm-s-typora-default .cm-link { color: rgb(196, 122, 15); text-decoration: underline; }
+.cm-s-typora-default .cm-variable-2, .cm-s-typora-default .cm-variable-1 { color: inherit; }
+.cm-s-typora-default .cm-overlay { font-size: 1rem; font-family: monospace; }
+.CodeMirror.cm-s-typora-default div.CodeMirror-cursor { border-left-width: 3px; border-left-style: solid; border-left-color: rgb(228, 98, 154); }
+.cm-s-typora-default .CodeMirror-activeline-background { left: -60px; right: -30px; background: rgba(204, 204, 204, 0.2); }
+.cm-s-typora-default .CodeMirror-gutters { border-right-style: none; background-color: inherit; }
+.cm-s-typora-default .cm-trailing-space-new-line::after, .cm-startspace::after, .cm-starttab .cm-tab::after { content: "•"; position: absolute; left: 0px; opacity: 0; font-family: LetterGothicStd, monospace; }
+.os-windows .cm-startspace::after, .os-windows .cm-starttab .cm-tab::after { left: -0.1em; }
+.cm-starttab .cm-tab::after { content: " "; }
+.cm-startspace, .cm-tab, .cm-starttab, .cm-trailing-space-a, .cm-trailing-space-b, .cm-trailing-space-new-line { font-family: monospace; position: relative; }
+.cm-s-typora-default .cm-trailing-space-new-line::after { content: "↓"; opacity: 0.3; }
+.cm-s-inner .cm-keyword { color: rgb(119, 0, 136); }
+.cm-s-inner .cm-atom, .cm-s-inner.cm-atom { color: rgb(34, 17, 153); }
+.cm-s-inner .cm-number { color: rgb(17, 102, 68); }
+.cm-s-inner .cm-def { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-variable { color: black; }
+.cm-s-inner .cm-variable-2 { color: rgb(0, 85, 170); }
+.cm-s-inner .cm-variable-3 { color: rgb(0, 136, 85); }
+.cm-s-inner .cm-property { color: black; }
+.cm-s-inner .cm-operator { color: black; }
+.cm-s-inner .cm-comment, .cm-s-inner.cm-comment { color: rgb(170, 85, 0); }
+.cm-s-inner .cm-string { color: rgb(170, 17, 17); }
+.cm-s-inner .cm-string-2 { color: rgb(255, 85, 0); }
+.cm-s-inner .cm-meta { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-qualifier { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-builtin { color: rgb(51, 0, 170); }
+.cm-s-inner .cm-bracket { color: rgb(153, 153, 119); }
+.cm-s-inner .cm-tag { color: rgb(17, 119, 0); }
+.cm-s-inner .cm-attribute { color: rgb(0, 0, 204); }
+.cm-s-inner .cm-header, .cm-s-inner.cm-header { color: blue; }
+.cm-s-inner .cm-quote, .cm-s-inner.cm-quote { color: rgb(0, 153, 0); }
+.cm-s-inner .cm-hr, .cm-s-inner.cm-hr { color: rgb(153, 153, 153); }
+.cm-s-inner .cm-link, .cm-s-inner.cm-link { color: rgb(0, 0, 204); }
+.cm-negative { color: rgb(221, 68, 68); }
+.cm-positive { color: rgb(34, 153, 34); }
+.cm-header, .cm-strong { font-weight: bold; }
+.cm-del { text-decoration: line-through; }
+.cm-em { font-style: italic; }
+.cm-link { text-decoration: underline; }
+.cm-error { color: rgb(255, 0, 0); }
+.cm-invalidchar { color: rgb(255, 0, 0); }
+div.CodeMirror span.CodeMirror-matchingbracket { color: rgb(0, 255, 0); }
+div.CodeMirror span.CodeMirror-nonmatchingbracket { color: rgb(255, 34, 34); }
+.cm-s-inner .CodeMirror-activeline-background { background: inherit; }
+.CodeMirror { position: relative; overflow: hidden; }
+.CodeMirror-scroll { margin-bottom: -30px; margin-right: -30px; padding-bottom: 30px; padding-right: 30px; height: 100%; outline: none; position: relative; box-sizing: content-box; }
+.CodeMirror-sizer { position: relative; }
+.CodeMirror-vscrollbar, .CodeMirror-hscrollbar, .CodeMirror-scrollbar-filler, .CodeMirror-gutter-filler { position: absolute; z-index: 6; display: none; }
+.CodeMirror-vscrollbar { right: 0px; top: 0px; overflow-x: hidden; overflow-y: scroll; }
+.CodeMirror-hscrollbar { bottom: 0px; left: 0px; overflow-y: hidden; overflow-x: scroll; }
+.CodeMirror-scrollbar-filler { right: 0px; bottom: 0px; }
+.CodeMirror-gutter-filler { left: 0px; bottom: 0px; }
+.CodeMirror-gutters { position: absolute; left: 0px; top: 0px; padding-bottom: 30px; z-index: 3; }
+.CodeMirror-gutter { white-space: normal; height: 100%; box-sizing: content-box; padding-bottom: 30px; margin-bottom: -32px; display: inline-block; }
+.CodeMirror-gutter-elt { position: absolute; cursor: default; z-index: 4; }
+.CodeMirror-lines { cursor: text; }
+.CodeMirror pre { border-radius: 0px; border-width: 0px; font-family: inherit; font-size: inherit; margin: 0px; white-space: pre; word-wrap: normal; color: inherit; z-index: 2; position: relative; overflow: visible; background: transparent; }
+.CodeMirror-wrap pre { word-wrap: break-word; white-space: pre-wrap; word-break: normal; }
+.CodeMirror-code pre { border-right-width: 30px; border-right-style: solid; border-right-color: transparent; width: fit-content; }
+.CodeMirror-wrap .CodeMirror-code pre { border-right-style: none; width: auto; }
+.CodeMirror-linebackground { position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px; z-index: 0; }
+.CodeMirror-linewidget { position: relative; z-index: 2; overflow: auto; }
+.CodeMirror-widget { }
+.CodeMirror-wrap .CodeMirror-scroll { overflow-x: hidden; }
+.CodeMirror-measure { position: absolute; width: 100%; height: 0px; overflow: hidden; visibility: hidden; }
+.CodeMirror-measure pre { position: static; }
+.CodeMirror div.CodeMirror-cursor { position: absolute; visibility: hidden; border-right-style: none; width: 0px; }
+.CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+.CodeMirror-focused div.CodeMirror-cursor { visibility: inherit; }
+.CodeMirror-selected { background: rgb(217, 217, 217); }
+.CodeMirror-focused .CodeMirror-selected { background: rgb(215, 212, 240); }
+.cm-searching { background: rgba(255, 255, 0, 0.4); }
+.CodeMirror span { }
+@media print { 
+  .CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+}
+
+
+html { font-size: 14px; }
+body { margin: 0px; padding: 0px; height: auto; bottom: 0px; top: 0px; left: 0px; right: 0px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 1rem; line-height: 1.42857; color: rgb(51, 51, 51); overflow-x: hidden; background-color: rgb(255, 255, 255); }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: rgb(181, 214, 252); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; word-wrap: break-word; position: relative; padding-bottom: 70px; white-space: pre-wrap; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+@media screen and (max-width: 500px) { 
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  .CodeMirror-sizer { margin-left: 0px !important; }
+  .CodeMirror-gutters { display: none !important; }
+}
+.typora-export #write { margin: 0px auto; }
+#write > p:first-child, #write > ul:first-child, #write > ol:first-child, #write > pre:first-child, #write > blockquote:first-child, #write > div:first-child, #write > table:first-child { margin-top: 30px; }
+img { max-width: 100%; }
+input, button, select, textarea { color: inherit; font-style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; font-size: inherit; line-height: inherit; font-family: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+::before, ::after, * { box-sizing: border-box; }
+#write p, #write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write div, #write pre { width: inherit; }
+#write p, #write h1, #write h2, #write h3, #write h4, #write h5, #write h6 { position: relative; }
+h1 { font-size: 2rem; }
+p { -webkit-margin-before: 1rem; -webkit-margin-after: 1rem; -webkit-margin-start: 0px; -webkit-margin-end: 0px; }
+.mathjax-block { margin-top: 0px; margin-bottom: 0px; -webkit-margin-before: 0rem; -webkit-margin-after: 0rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: bold; font-style: italic; }
+a { cursor: pointer; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; margin: 4px 0px 0px; }
+tr { page-break-inside: avoid; page-break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; page-break-inside: auto; text-align: left; }
+table.md-table td { min-width: 80px; }
+.CodeMirror-gutters { border-right-width: 0px; background-color: inherit; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+pre { white-space: pre-wrap; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences, pre.md-fences { font-size: 0.9rem; display: block; page-break-inside: avoid; text-align: left; overflow: visible; white-space: pre; position: relative !important; background: inherit; }
+.md-fences .CodeMirror.CodeMirror-wrap { top: -1.6em; margin-bottom: -1.6em; }
+.md-fences.mock-cm { white-space: pre-wrap; }
+.show-fences-line-number pre.md-fences { padding-left: 0px; }
+.show-fences-line-number pre.md-fences.mock-cm { padding-left: 40px; }
+.footnotes { color: rgb(136, 136, 136); font-size: 0.9rem; padding-top: 1em; padding-bottom: 1em; }
+.footnotes + .footnotes { margin-top: -1em; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; text-decoration: none; color: rgb(51, 51, 51); font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 1rem; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: normal; text-align: left; box-sizing: content-box; direction: ltr; background: transparent; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li p, li .mathjax-block { margin: 0.5rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; }
+@media print { 
+  html, body { height: 100%; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  h1, h2, h3, h4, h5, h6 { page-break-after: avoid; orphans: 2; }
+  p { orphans: 4; }
+  html.blink-to-pdf { font-size: 13px; }
+  .typora-export #write { padding-left: 1cm; padding-right: 1cm; }
+  .typora-export #write::after { height: 0px; }
+  @page { margin: 20mm 0mm; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+#write pre.md-meta-block { font-size: 0.8rem; min-height: 2.86rem; white-space: pre-wrap; display: block; background: rgb(204, 204, 204); }
+p > .md-image:only-child { display: inline-block; width: 100%; text-align: center; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.mathjax-block { white-space: pre; overflow: hidden; width: 100%; }
+p + .mathjax-block { margin-top: -1.143rem; }
+.mathjax-block:not(:empty)::after { display: none; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus { outline: none; box-shadow: none; }
+.task-list { list-style-type: none; }
+.task-list-item { position: relative; padding-left: 1em; }
+.task-list-item input { position: absolute; top: 0px; left: 0px; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc::after, .md-toc-content::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: bold; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) { 
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { color: inherit; font-size: inherit; font-style: inherit; font-weight: inherit; text-decoration: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+.md-tag { opacity: 0.5; }
+code { text-align: left; }
+h1 .md-tag, h2 .md-tag, h3 .md-tag, h4 .md-tag, h5 .md-tag, h6 .md-tag { font-weight: initial; opacity: 0.35; }
+a.md-header-anchor.md-print-anchor { border: none !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: none !important; text-decoration: initial !important; text-shadow: initial !important; background: transparent !important; }
+.md-inline-math .MathJax_SVG .noError { display: none !important; }
+.mathjax-block .MathJax_SVG_Display { text-align: center; margin: 1em 0em; position: relative; text-indent: 0px; max-width: none; max-height: none; min-width: 0px; min-height: 0px; width: 100%; display: block !important; }
+.MathJax_SVG_Display, .md-inline-math .MathJax_SVG_Display { width: auto; margin: inherit; display: inline-block !important; }
+.MathJax_SVG .MJX-monospace { font-family: monospace; }
+.MathJax_SVG .MJX-sans-serif { font-family: sans-serif; }
+.MathJax_SVG { display: inline; font-style: normal; font-weight: normal; line-height: normal; zoom: 90%; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; }
+.MathJax_SVG * { transition: none; }
+
+
+@font-face { font-family: 'Open Sans'; font-style: normal; font-weight: normal; src: local("Open Sans Regular"), url("file:///C:/Users/ming/AppData/Roaming/Typora/themes/github/400.woff") format("woff"); }
+@font-face { font-family: 'Open Sans'; font-style: italic; font-weight: normal; src: local("Open Sans Italic"), url("file:///C:/Users/ming/AppData/Roaming/Typora/themes/github/400i.woff") format("woff"); }
+@font-face { font-family: 'Open Sans'; font-style: normal; font-weight: bold; src: local("Open Sans Bold"), url("file:///C:/Users/ming/AppData/Roaming/Typora/themes/github/700.woff") format("woff"); }
+@font-face { font-family: 'Open Sans'; font-style: italic; font-weight: bold; src: local("Open Sans Bold Italic"), url("file:///C:/Users/ming/AppData/Roaming/Typora/themes/github/700i.woff") format("woff"); }
+html { font-size: 16px; }
+body { font-family: 'Open Sans', 'Clear Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; color: rgb(51, 51, 51); line-height: 1.6; }
+#write { max-width: 800px; margin: 0px auto; padding: 20px 30px 40px; }
+#write::after { height: 80px; }
+#write > ul:first-child, #write > ol:first-child { margin-top: 30px; }
+body > :first-child { margin-top: 0px !important; }
+body > :last-child { margin-bottom: 0px !important; }
+a { color: rgb(65, 131, 196); }
+h1, h2, h3, h4, h5, h6 { position: relative; margin-top: 1rem; margin-bottom: 1rem; font-weight: bold; line-height: 1.4; cursor: text; }
+h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor, h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor { text-decoration: none; }
+h1 tt, h1 code { font-size: inherit; }
+h2 tt, h2 code { font-size: inherit; }
+h3 tt, h3 code { font-size: inherit; }
+h4 tt, h4 code { font-size: inherit; }
+h5 tt, h5 code { font-size: inherit; }
+h6 tt, h6 code { font-size: inherit; }
+h1 { padding-bottom: 0.3em; font-size: 2.25em; line-height: 1.2; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: rgb(238, 238, 238); }
+h2 { padding-bottom: 0.3em; font-size: 1.75em; line-height: 1.225; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: rgb(238, 238, 238); }
+h3 { font-size: 1.5em; line-height: 1.43; }
+h4 { font-size: 1.25em; }
+h5 { font-size: 1em; }
+h6 { font-size: 1em; color: rgb(119, 119, 119); }
+p, blockquote, ul, ol, dl, table { margin: 0.8em 0px; }
+li > ol, li > ul { margin: 0px; }
+hr { height: 4px; padding: 0px; margin: 16px 0px; border-width: 0px 0px 1px; border-style: none none solid; overflow: hidden; box-sizing: content-box; border-bottom-color: rgb(221, 221, 221); background-color: rgb(231, 231, 231); }
+body > h2:first-child { margin-top: 0px; padding-top: 0px; }
+body > h1:first-child { margin-top: 0px; padding-top: 0px; }
+body > h1:first-child + h2 { margin-top: 0px; padding-top: 0px; }
+body > h3:first-child, body > h4:first-child, body > h5:first-child, body > h6:first-child { margin-top: 0px; padding-top: 0px; }
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 { margin-top: 0px; padding-top: 0px; }
+h1 p, h2 p, h3 p, h4 p, h5 p, h6 p { margin-top: 0px; }
+li p.first { display: inline-block; }
+ul, ol { padding-left: 30px; }
+ul:first-child, ol:first-child { margin-top: 0px; }
+ul:last-child, ol:last-child { margin-bottom: 0px; }
+blockquote { border-left-width: 4px; border-left-style: solid; border-left-color: rgb(221, 221, 221); padding: 0px 15px; color: rgb(119, 119, 119); }
+blockquote blockquote { padding-right: 0px; }
+table { padding: 0px; }
+table tr { border-top-width: 1px; border-top-style: solid; border-top-color: rgb(204, 204, 204); margin: 0px; padding: 0px; background-color: white; }
+table tr:nth-child(2n) { background-color: rgb(248, 248, 248); }
+table tr th { font-weight: bold; border: 1px solid rgb(204, 204, 204); text-align: left; margin: 0px; padding: 6px 13px; }
+table tr td { border: 1px solid rgb(204, 204, 204); text-align: left; margin: 0px; padding: 6px 13px; }
+table tr th:first-child, table tr td:first-child { margin-top: 0px; }
+table tr th:last-child, table tr td:last-child { margin-bottom: 0px; }
+.CodeMirror-gutters { border-right-width: 1px; border-right-style: solid; border-right-color: rgb(221, 221, 221); }
+pre.md-fences, .md-fences, code, tt { border: 1px solid rgb(221, 221, 221); border-radius: 3px; font-family: Consolas, 'Liberation Mono', Courier, monospace; padding: 2px 4px 0px; font-size: 0.9em; background-color: rgb(248, 248, 248); }
+pre.md-fences, .md-fences { margin-bottom: 15px; margin-top: 15px; padding: 8px 1em 6px; }
+.task-list { padding-left: 0px; }
+.task-list-item { padding-left: 32px; }
+.task-list-item input { top: 3px; left: 8px; }
+@media screen and (min-width: 914px) { 
+}
+@media print { 
+  html { font-size: 13px; }
+  table, pre { page-break-inside: avoid; }
+  pre { word-wrap: break-word; }
+}
+.md-fences { background-color: rgb(248, 248, 248); }
+#write pre.md-meta-block { padding: 1rem; font-size: 85%; line-height: 1.45; border: 0px; border-radius: 3px; color: rgb(119, 119, 119); margin-top: 0px !important; background-color: rgb(247, 247, 247); }
+.mathjax-block > .code-tooltip { bottom: 0.375rem; }
+#write > h3.md-focus::before { left: -1.5625rem; top: 0.375rem; }
+#write > h4.md-focus::before { left: -1.5625rem; top: 0.285714rem; }
+#write > h5.md-focus::before { left: -1.5625rem; top: 0.285714rem; }
+#write > h6.md-focus::before { left: -1.5625rem; top: 0.285714rem; }
+.md-image > .md-meta { border: 1px solid rgb(221, 221, 221); border-radius: 3px; font-family: Consolas, 'Liberation Mono', Courier, monospace; padding: 2px 4px 0px; font-size: 0.9em; color: inherit; background-color: rgb(248, 248, 248); }
+.md-tag { color: inherit; }
+.md-toc { margin-top: 20px; padding-bottom: 20px; }
+#typora-quick-open { border: 1px solid rgb(221, 221, 221); background-color: rgb(248, 248, 248); }
+#typora-quick-open-item { border-color: rgb(254, 254, 254) rgb(229, 229, 229) rgb(229, 229, 229) rgb(238, 238, 238); border-style: solid; border-width: 1px; background-color: rgb(250, 250, 250); }
+.on-focus-mode blockquote { border-left-color: rgba(85, 85, 85, 0.117647); }
+
+
+
+
+
+
+</style>
+</head>
+<body class='typora-export ' >
+<div  id='write'  class = 'is-node'><h1><a name='header-c1' class='md-header-anchor '></a>指令</h1><blockquote><p><code>ng-app</code></p></blockquote><ul><li>告诉angular从哪里开始管理代码，管理ng-app所在元素以及其子元素</li></ul><blockquote><p><code>ng-click</code></p></blockquote><ul><li>注册鼠标点击事件</li></ul><blockquote><p><code>ng-model</code></p></blockquote><ul><li>用来获取文本框等的值 <code>ng-model=&quot;val&quot;</code></li></ul><blockquote><p><code>ng-init</code></p></blockquote><ul><li>用来初始化ng-model指定的值 如 <code>ng-init=&quot;val=&#39;小明&#39;&quot;</code></li></ul><blockquote><p><code>ng-controller</code></p></blockquote><ul><li>指定一个控制器来管理页面的代码</li></ul><blockquote><p><code>ng-bind=&quot;name&quot;</code></p></blockquote><ul><li>实现类似于表达式的功能，只能用在双标签上，{{name}} ,可以解决表达式后解析出现的闪屏问题</li></ul><blockquote><p><code>class = &quot;ng-cloak&quot;</code></p></blockquote><ul><li>angular解析完后会移除所有的ng-cloak 样式</li></ul><blockquote><p><code>ng-bind-html</code></p></blockquote><ul><li>用来渲染html字符串，需要引入angular-sanitize插件，使用方式和ng-bind一样。</li></ul><blockquote><p><code>ng-repeat</code> : 用来循环某个元素，以输出数组中的数据，写法类似于forin循环</p></blockquote><ul><li>示例:<code>&lt;li ng-repeat=&quot;item in data&quot;&gt;{{item.name}}&lt;/li&gt;</code> item 为变量，data为数据</li><li>示例: <code>&lt;li ng-repeat=&quot;key in obj&quot;&gt;{{obj[key]}}&lt;/li&gt;</code>(这里的key代表属性值)  <code>&lt;li ng-repeat=&quot;(key,value) in obj&quot;&gt;{{key}}{{value}}&lt;/li&gt;</code></li><li>遍历的数组中如果有重复元素，加上<code>track by $index</code> 如： <code>&lt;li ng-repeat=&quot;item in data track by $index &quot;&gt;{{item}}&lt;/li&gt;</code></li></ul><ul><li><p>ng-repeat在遍历数组时会额外提供其他的数据</p><ul><li>$even:表示当前数据是否是第偶数个，是从索引0开始计算的。</li><li>$odd: 表示当前数据是否是第奇数个，是从索引0开始计算的。</li><li>$first:表示当前数据是否是第一条数据</li><li>$last:表示当前数据是否是最后一条数据</li><li>$middle:表示当前数据不是第一条也不是最后一条。</li></ul></li></ul><blockquote><p>ng-class,动态的操作元素的样式，写法类似于从一个对象中取相应的value值</p></blockquote><ul><li>示例:<code>&lt;li ng-class=&quot;{&#39;A&#39;:&#39;red&#39;,&#39;B&#39;:&#39;green&#39;,C:&#39;yellow&#39;}[&#39;A&#39;]&quot;&gt;&lt;/li&gt;</code>  angular会把取到的值添加到对应的class中。</li><li>示例:<code>&lt;li ng-class=&quot;{&#39;red&#39;:true,&#39;green&#39;:true,yellow:false}&quot;&gt;&lt;li&gt;</code></li></ul><blockquote><p><code>ng-show</code> : 需要提供一个布尔值，隐藏或显示元素，为true时显示</p></blockquote><blockquote><p><code>ng-hide</code> : 需要提供一个布尔值，隐藏或显示元素，为true时隐藏</p></blockquote><blockquote><p><code>ng-if</code> :   也需要提供一个布尔值，移除或显示元素，为true显示元素，false时移除元素.</p></blockquote><blockquote><p><code>ng-switch</code> : 根据值的不同显示不同的元素,配合ng-switch-when使用,类似于js中的switch case</p></blockquote><ul><li>示例：</li></ul><pre class='md-fences mock-cm' style='display:block;position:relative'>&lt;ul ng-switch=&quot;name&quot;&gt;
+    &lt;li ng-switch-when=&quot;小明&quot;&gt;{{name}}&lt;/li&gt;
+&lt;/ul&gt;
+//$scope.name = &quot;小明&quot;</pre><p></p><h3><a name='header-c125' class='md-header-anchor '></a>其他常用指令</h3><ul><li><p>ng-checked:</p><ul><li>单选/复选是否选中,ng-model双向数据绑定,ng-checked是单向</li></ul></li><li><p>ng-selected:</p><ul><li>是否选中</li></ul></li><li><p>ng-disabled：</p><ul><li>是否禁用</li></ul></li><li><p>ng-readonly:</p><ul><li>是否只读</li></ul></li></ul><h3><a name='header-c155' class='md-header-anchor '></a>常用事件指令</h3><p>不同于以上的功能性指令，Angular还定义了一些用于和事件绑定的指令：</p><ul><li>ng-blur：//失去焦点事件</li><li>ng-focus：// 获取焦点事件  .focus()</li><li>ng-change：// 文本值改变事件</li><li>ng-copy：// 复制事件</li><li>ng-click：// 单击事件  ng-click=&quot;add()&quot;</li><li>ng-dblclick：//双击事件</li><li>ng-submit: // 表单提交</li></ul><h3><a name='header-c180' class='md-header-anchor '></a>自定义指令</h3><blockquote><p>通过模块对象的directive方法创建，第一个参数是指令的名字，第二个参数类似控制器第二个参数，
+只不过，第二个参数中的function中只需要返回一个对象，关键是这个对象的属性</p></blockquote><pre class='md-fences mock-cm' style='display:block;position:relative'>//注意，自定义指令与控制器无关
+app.directive(&quot;myBtn&quot;,[function(){  // 名字必须驼峰命名，使用指令则必须my-btn这样使用
+  var obj = {
+    template:&quot;&quot;,
+    templateUrl: url/scriptID,
+    restrict:&quot;ECMA&quot;,  // 以什么方式使用指令，E：element；C：class；M：注释；A：attribute；
+    replace:true,           //默认为false,为true时，会用模板字符串替换自定义指令所在标签。否则是包含在指令标签内
+    scope:{
+      myclass:&#39;@type&#39;,     //属性值以@开头，后面跟上自定义指令所在标签的属性名
+      type:&#39;@&#39;           // 这是上面的简写方式.,type就是自定义指令所在标签的属性名
+    },                   // scope.的属性可以在模板使用表达式输出，并且只能在模板使用。
+    transclude:true, //默认false,为true时，angular会将自定义指令所在标签的innerHTML位置的值插入模板中，
+    然后把模板整体再添加到它的innerHTML位置，还需要通过ng-transclude指令指定标签innerHTML位置的值
+    插入到模板中的哪个元素中。不能够与replace为true同用。
+  };
+
+  return obj;
+}])
+</pre><blockquote><p>参数说明</p></blockquote><ul><li>template:&quot;标签&quot;              //标签字符串</li><li>templateUrl: url/scriptId   // html的url或者是script:type=text/ng-template模板标签的id值</li><li>restrict：&quot;ECMA&quot;</li></ul><pre class='md-fences mock-cm' style='display:block;position:relative'>E:  &lt;my-btn&gt;&lt;/my-btn&gt;
+C:  &lt;div class = &quot;my-btn&quot;&gt;&lt;/div&gt;
+A:  &lt;div my-btn&gt;&lt;/div&gt;
+M:  &lt;!-- directive:my-btn --&gt;   //注意：注释这种必须配合 replace：true 才起效果
+</pre><ul><li>replace ：true/false;  //注意，添加了此属性true，那么必须保证模板中只有一个标签元素了，否则报错</li><li>scope:{}</li></ul><pre class='md-fences mock-cm' style='display:block;position:relative'>//第一种方式
+
+&lt;my-btn type = &quot;red&quot;&gt;&lt;/my-btn&gt;  // 指令
+&lt;button class = &quot;myclass&quot;&gt;&lt;/button&gt;  // 模板
+scope：{
+  myclass:&quot;@type&quot;,  获取指令中的type属性值，替代模板中的myclass位置
+}</pre><pre class='md-fences mock-cm' style='display:block;position:relative'>//第二种方式
+
+&lt;my-btn type = &quot;red&quot;&gt;&lt;/my-btn&gt;  // 指令
+&lt;button class = &quot;type&quot;&gt;&lt;/button&gt;  // 模板
+scope：{
+  type:&quot;@&quot;,  获取指令中的type属性值，替代模板中的type位置(简写形式)
+}</pre><ul><li>transclude:默认为false，为true时，angular将自定义指令标签中的innerHTML值插入模板，再将模板整体添加到它的innerHTML位置，注意不能和replace共用</li></ul><pre class='md-fences mock-cm' style='display:block;position:relative'>&lt;my-btn&gt;模板插入内容&lt;/my-btn&gt;    //指令
+
+&lt;button transclude&gt;哈哈&lt;/button&gt;   //模板,仅指定第一条替换内容，并且替换后内部多了一 个span标签
+&lt;button&gt;哈哈&lt;/button&gt;
+
+transclude:true,
+
+结果：
+&lt;button transclude&gt;模板插入内容&lt;/button&gt;
+&lt;button&gt;哈哈&lt;/button&gt;
+</pre><ul><li><p>link： 指定一个function(scope,element,attributes){}</p><ul><li>scope: 类似于控制器的$scope,但scope只能在模板中引用</li><li>element: 自定义指令所在标签的jqLite对象</li><li>attributes：是一个对象，获取自定义指令所在标签的所有属性，如果有&quot;-&quot;,会转为驼峰命名</li></ul></li></ul><pre class='md-fences mock-cm' style='display:block;position:relative'>link:function(scope,element,attributes) {
+                scope.name = &quot;123&quot;;     //{{name}}可以在模板中使用
+                element.on(&quot;click&quot;,function() { // 为指令替换后的元素标签添加点击事件
+                    console.log(123)
+                });
+                console.log(attributes) //获取到自定义指令中所有的自定义属性对象，
+                               //但注意同名属性如：ming=&quot;123&quot;,data-ming=&quot;345&quot;后面标准h5属性会优先于前面属性获取到，即覆盖掉前面
+            }</pre><h3><a name='header-c231' class='md-header-anchor '></a>指令的标准使用方式</h3><p>data-ng-xxx,在使用angular指令时，只需要在原先的指令前加上data-前缀。</p><h3><a name='header-c234' class='md-header-anchor '></a>CDN (扩展)</h3><ul><li><p>Content Delivery NetWork</p></li><li><p>1.减轻带宽压力</p><ul><li>2.能够根据不用地区由不同的服务器返回数据</li><li>3.利用浏览器对静态资源缓存的策略。</li></ul></li></ul><h1><a name='header-c250' class='md-header-anchor '></a>表达式</h1><blockquote><p><code>{{}}</code>   在两个大括号中写数据模型，最终被渲染出来</p></blockquote><h1><a name='header-c254' class='md-header-anchor '></a>函数使用地方</h1><ol><li>事件：<code>ng-click = &quot;add()&quot;</code></li><li>属性：<code>ng-class = &quot;add()&quot;</code></li><li>表达式: <code>{{add()}}</code></li></ol><ul><li>三种地方均可使用函数调用，效果根据返回值</li></ul><h3><a name='header-c269' class='md-header-anchor '></a>angular 模块的创建</h3><blockquote><p><code>var app = angular.module(&quot;模块名&quot;,[])</code> 创建模块，必须有第二个参数为数组，数组内容为依赖模块，若无，为空
+<code>var app = angular.module(&quot;模块名&quot;)</code> 获取模块</p></blockquote><ul><li>需要将模块名字写在<code>ng-app</code>属性的值中</li></ul><h3><a name='header-c278' class='md-header-anchor '></a>angular 控制器的创建</h3><blockquote><p>通过模块对象创建控制器</p></blockquote><ol><li><code>app.controller(&quot;控制器名&quot;,function($scope){})</code> $scope是用来存储数据模型的，此方式在压缩代码时会出现错误</li><li><code>function demoController($scope){}</code> 旧版本的一种方式,将全局函数当做控制器来使用，污染全局变量严重</li><li><code>app.controller(&quot;控制器名&quot;,[&quot;$scope&quot;,&quot;$log&quot;,function($scope,$log){}])</code> 推荐方式</li></ol><h3><a name='header-c292' class='md-header-anchor '></a>面向对象的方式创建控制器</h3><ul><li>angular会把controller的回调函数当作构建函数来使用</li><li>需要在之前ng-controller属性值后加上<code>as  obj</code>,这里的obj就是构建函数new出来的对象</li></ul><pre class="md-fences md-end-block"> <div class="CodeMirror cm-s-inner CodeMirror-wrap"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 4px;"></div><div class="CodeMirror-hscrollbar" style="left: 0px;"><div style="height: 100%; min-height: 1px; width: 0px;"></div></div><div class="CodeMirror-vscrollbar"><div style="min-width: 1px; height: 0px;"></div></div><div class="CodeMirror-scrollbar-filler"></div><div class="CodeMirror-gutter-filler"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; min-height: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines"><div style="position: relative; outline: none;"><div class="CodeMirror-measure"><span><span>​</span>x</span></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><pre class=""><span style="padding-right: 0.1px;">  <span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">body</span> <span class="cm-attribute">ng-app</span>=<span class="cm-string">"myApp"</span><span class="cm-tag cm-bracket">&gt;</span></span></pre></div><pre class=""><span style="padding-right: 0.1px;">  <span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">div</span> <span class="cm-attribute">ng-controller</span>=<span class="cm-string">"demoController as obj "</span><span class="cm-tag cm-bracket">&gt;</span></span></pre><pre class=""><span style="padding-right: 0.1px;"> &nbsp;  {{name}}</span></pre><pre class=""><span style="padding-right: 0.1px;"> &nbsp;  {{obj.age}}</span></pre><pre class=""><span style="padding-right: 0.1px;">  <span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">div</span><span class="cm-tag cm-bracket">&gt;</span></span></pre><pre class=""><span style="padding-right: 0.1px;">  <span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">script</span> <span class="cm-attribute">src</span>=<span class="cm-string">"node_modules/angular/angular.js"</span><span class="cm-tag cm-bracket">&gt;&lt;/</span><span class="cm-tag">script</span><span class="cm-tag cm-bracket">&gt;</span></span></pre><pre class=""><span style="padding-right: 0.1px;">  <span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">script</span><span class="cm-tag cm-bracket">&gt;</span></span></pre><pre class=""><span style="padding-right: 0.1px;"> &nbsp;  <span class="cm-comment">// 1.创建模块</span></span></pre><pre class=""><span style="padding-right: 0.1px;"> &nbsp;  <span class="cm-keyword">var</span> <span class="cm-def">app</span> <span class="cm-operator">=</span> <span class="cm-variable">angular</span>.<span class="cm-property">module</span>(<span class="cm-string">'myApp'</span>,[]);</span></pre><pre class=""><span style="padding-right: 0.1px;"><span>​</span></span></pre><pre class=""><span style="padding-right: 0.1px;"> &nbsp;  <span class="cm-comment">// 2.创建控制器</span></span></pre><pre class=""><span style="padding-right: 0.1px;"> &nbsp;  <span class="cm-variable">app</span>.<span class="cm-property">controller</span>(<span class="cm-string">'demoController'</span>,<span class="cm-keyword">function</span>(<span class="cm-def">$scope</span>){</span></pre><pre class=""><span style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; <span class="cm-variable-2">$scope</span>.<span class="cm-property">name</span><span class="cm-operator">=</span><span class="cm-string">"小明"</span>;</span></pre><pre class=""><span style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; <span class="cm-keyword">this</span>.<span class="cm-property">age</span><span class="cm-operator">=</span><span class="cm-number">18</span>;</span></pre><pre class=""><span style="padding-right: 0.1px;"> &nbsp;  })</span></pre><pre class=""><span style="padding-right: 0.1px;">  <span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">script</span><span class="cm-tag cm-bracket">&gt;</span></span></pre><pre class=""><span style="padding-right: 0.1px;"><span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">body</span><span class="cm-tag cm-bracket">&gt;</span></span></pre></div></div></div></div></div><div style="position: absolute; height: 30px; width: 1px; top: 0px;"></div><div class="CodeMirror-gutters" style="display: none; height: 381px;"></div></div></div></pre><h3><a name='header-c301' class='md-header-anchor '></a>$watch</h3><blockquote><p>用于监视数据模型的变化</p></blockquote><pre class='md-fences mock-cm' style='display:block;position:relative'>$scope.$watch(&quot;数据模型的名字/字符串格式&quot;,function(变化后的值,变化前的值){
+//这个方法默认执行一次
+})</pre><h3><a name='header-c306' class='md-header-anchor '></a>hashchange 事件</h3><blockquote><p>监听地址栏的hash变化</p></blockquote><p></p><h3><a name='header-c312' class='md-header-anchor '></a>依赖注入的原理</h3><ul><li>就查根据名字传入参数</li><li>获取形参的方式：toString()</li></ul></div>
+</body>
+</html>
